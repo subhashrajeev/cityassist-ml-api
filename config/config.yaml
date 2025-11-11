@@ -1,0 +1,35 @@
+app:
+  name: "CityAssist Data Science API"
+  version: "1.0.0"
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+
+models:
+  aqi_alert:
+    path: "models/aqi_alert_model.pkl"
+    scaler_path: "models/aqi_alert_scaler.pkl"
+    threshold_high: 300
+    threshold_moderate: 150
+
+  traffic_eta:
+    path: "models/traffic_eta_model.pkl"
+    scaler_path: "models/traffic_eta_scaler.pkl"
+
+  outage_eta:
+    path: "models/outage_eta_model.pkl"
+    scaler_path: "models/outage_eta_scaler.pkl"
+
+  image_classifier:
+    path: "models/image_classifier.h5"
+    labels: ["pothole", "garbage", "tree_fall", "streetlight", "other"]
+    image_size: [224, 224]
+    confidence_threshold: 0.7
+
+logging:
+  level: "INFO"
+  format: "json"
+
+monitoring:
+  enabled: true
+  metrics_port: 9090
