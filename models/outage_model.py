@@ -54,8 +54,9 @@ class OutageETAModel:
         if 'affected_customers' in df.columns:
             df['severity_score'] = np.log1p(df['affected_customers'])
 
-        # Fill missing values
-        df = df.fillna(df.mean())
+        # Fill missing values (only for numeric columns)
+        numeric_columns = df.select_dtypes(include=[np.number]).columns
+        df[numeric_columns] = df[numeric_columns].fillna(df[numeric_columns].mean())
 
         return df
 
